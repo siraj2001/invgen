@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { supabase } from '../../lib/supabase';
-import type { Invoice, Customer, Product, InvoiceItem } from '../../types';
+import type { Invoice, Customer } from '../../types';
 import toast from 'react-hot-toast';
 import { Plus, Trash2, ArrowLeft, Save, UserPlus } from 'lucide-react';
 import { CustomerModal } from '../customers/CustomerModal';
@@ -15,7 +15,7 @@ export function InvoiceForm() {
   const fromQuotationId = searchParams.get('from_quotation');
 
   const [customers, setCustomers] = useState<Customer[]>([]);
-  const [products, setProducts] = useState<Product[]>([]);
+
   const [loading, setLoading] = useState(false);
   const [isCustomerModalOpen, setIsCustomerModalOpen] = useState(false);
 
@@ -88,13 +88,8 @@ export function InvoiceForm() {
 
   const fetchInitialData = async () => {
     setLoading(true);
-    const [custRes, prodRes] = await Promise.all([
-      supabase.from('customers').select('*'),
-      supabase.from('products').select('*')
-    ]);
-
+    const custRes = await supabase.from('customers').select('*');
     if (custRes.data) setCustomers(custRes.data);
-    if (prodRes.data) setProducts(prodRes.data);
 
     if (isEditing && id) {
       const { data: invoice, error } = await supabase
