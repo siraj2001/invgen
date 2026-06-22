@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-zinc-50 text-zinc-900 antialiased;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 disabled:opacity-50 hover:shadow-md hover:-translate-y-0.5 min-h-[44px] md:min-h-0;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-md border border-zinc-200 bg-white px-4 py-2 text-sm font-medium text-zinc-700 shadow-sm hover:bg-zinc-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 hover:shadow-sm hover:-translate-y-0.5 min-h-[44px] md:min-h-0;
+  }
+  .input-field {
+    @apply block w-full rounded-md border-zinc-200 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2 border bg-white transition-colors duration-200 min-h-[44px] md:min-h-0;
+  }
+  .card {
+    @apply bg-white shadow-[0_2px_10px_-3px_rgba(6,81,237,0.1)] ring-1 ring-zinc-200/60 sm:rounded-xl overflow-hidden;
+  }
+}
